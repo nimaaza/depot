@@ -6,6 +6,16 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     @title = "The Great Book #{rand(1000)}"
   end
 
+  test "should have at least 4 navbar links and 3 products in the catalog" do
+    get products_url
+    assert_response :success
+
+    assert_select 'nav.side_nav a', minimum: 4
+    assert_select 'main.products table tfoot', 1
+    assert_select 'main.products table tbody tr', 3
+    assert_select 'h1', 'Programming Ruby 1.9'
+  end
+
   test "should get index" do
     get products_url
     assert_response :success
