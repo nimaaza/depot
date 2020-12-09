@@ -10,6 +10,7 @@ class Cart < ApplicationRecord
       current_item = line_items.build(product_id: product.id)
     end
 
+    current_item.price = product.price * current_item.quantity
     current_item
   end
 
