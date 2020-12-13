@@ -1,2 +1,6 @@
 cart = document.getElementById('cart')
-cart.innerHTML = "<%= j render(@cart) %>"
+<% if @cart.line_items.any? %>
+  cart.innerHTML = "<%= j render(@cart) %>"
+<% else %>
+  cart.innerHTML = ''
+<% end %>
